@@ -12,6 +12,7 @@ import 'evidence_repository.dart';
 import 'hint_repository.dart';
 import 'note_repository.dart';
 import 'progress_repository.dart';
+import 'sync_repository.dart';
 
 export 'accusation_repository.dart';
 export 'board_repository.dart';
@@ -20,6 +21,7 @@ export 'evidence_repository.dart';
 export 'hint_repository.dart';
 export 'note_repository.dart';
 export 'progress_repository.dart';
+export 'sync_repository.dart';
 
 class Repositories {
   /// [now] is injectable so tests get predictable timestamps.
@@ -33,10 +35,14 @@ class Repositories {
     board = BoardRepository(db, evidence);
     hints = HintRepository(db, progress, _now);
     accusations = AccusationRepository(db, cases, board, progress, _now);
+    sync = SyncRepository(db);
   }
 
   final AppDatabase database;
   final DateTime Function() _now;
+
+  /// The clock every repository stamps rows with.
+  DateTime now() => _now();
 
   late final CaseRepository cases;
   late final ProgressRepository progress;
@@ -45,4 +51,5 @@ class Repositories {
   late final BoardRepository board;
   late final HintRepository hints;
   late final AccusationRepository accusations;
+  late final SyncRepository sync;
 }

@@ -13,7 +13,14 @@ Everything that touches storage.
   - `hints` - hint history for the hint engine
   - `accusations` - `submit` runs the accusation checker, records the attempt and marks the case solved
 - `hint_service.dart` - `HintService`: builds a `HintState` from the repositories, runs the `HintEngine`, and records which hints were shown (`request`) or followed (`markFollowed`). `peek` computes without recording.
-- `sync/` - Firebase Auth and Firestore backup (SQLite stays the source of truth). Coming later.
+- `repositories/sync_repository.dart` - exports every player table to a `BackupSnapshot` and imports one back (board strings by evidence id), plus the `sync_meta` bookkeeping table (schema v2).
+- `sync/` - cloud features. SQLite stays the source of truth.
+  - `auth_service.dart` - `AuthService` interface, `AccountService` (guest mode, form checks, friendly `AuthFailure` messages), `UnavailableAuthService` for builds without Firebase
+  - `firebase_auth_service.dart` - email/password on Firebase Auth, error codes mapped to plain messages
+  - `backup_store.dart` - `BackupStore` interface, `InMemoryBackupStore` (tests), `UnavailableBackupStore`
+  - `firestore_backup_store.dart` - one document per user at `users/{uid}`
+  - `sync_service.dart` - `backup()`, `restore()` with last-write-wins, `retryPendingBackup()`, `info()`
+  - `firebase_bootstrap.dart` - starts Firebase if `lib/firebase_options.dart` is real, otherwise returns guest-only stand-ins
 
 Rule breaches (pinning an uncollected clue, empty note, self link) throw `RuleViolation`, whose message is safe to show on screen.
 
