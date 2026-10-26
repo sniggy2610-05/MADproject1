@@ -49,7 +49,6 @@ app.*.map.json
 
 # Secrets and signing - never commit these
 /android/app/google-services.json
-/lib/firebase_options.dart
 /android/key.properties
 *.jks
 *.keystore

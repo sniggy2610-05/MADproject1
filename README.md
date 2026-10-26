@@ -29,7 +29,7 @@ Flutter + Dart, SQLite via `sqflite` (offline source of truth), `provider` for s
    flutter test
    ```
 
-Firebase is optional and not configured yet. `google-services.json` and `firebase_options.dart` are git-ignored; each developer adds their own copy after running `flutterfire configure`.
+Firebase is optional. Until `flutterfire configure` has been run the app runs in guest-only mode. See [docs/FIREBASE_SETUP.md](docs/FIREBASE_SETUP.md) for the one-time project setup and the per-developer step.
 
 ## Project layout
 
@@ -51,7 +51,7 @@ docs/
 - **Branches:** one feature branch per task (`feature/...`), merged into `main` through a pull request after review.
 - **Kanban:** Backlog, To Do, In Progress, Review, Done. A card is Done only after review and merge.
 - **Milestones:** tagged commits at Milestone 1 (UI and navigation) and Milestone 2 (full case playable).
-- **No secrets in the repo.** Keystores, Firebase config and key properties are git-ignored.
+- **No secrets in the repo.** Keystores, `google-services.json` and key properties are git-ignored. `lib/firebase_options.dart` is committed because it holds public app identifiers, not secrets; data is protected by `firebase/firestore.rules`.
 - **AI log:** every AI-assisted change is recorded in `docs/AI_LOG.md`.
 
 ## Sprint plan (14 days)

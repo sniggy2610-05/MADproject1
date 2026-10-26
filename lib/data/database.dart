@@ -5,20 +5,24 @@ import 'package:sqflite/sqflite.dart';
 ///
 /// How versions work:
 /// - [schemaVersion] is the version this build of the app expects.
-/// - On a fresh install, [_createAll] builds the latest schema in one go.
+/// - On a fresh install, [_createAll] builds version 1 and then applies every
+///   migration in order, so a fresh database and an upgraded one are identical.
 /// - On an upgrade, every entry in [_migrations] from the old version + 1 up
 ///   to [schemaVersion] runs in order inside one transaction, so notes and
 ///   boards made with an older build survive the update.
 ///
-/// To change the schema later: bump [schemaVersion], add the change to
-/// [_createAll] (for fresh installs) and add a matching entry to
-/// [_migrations] (for existing installs). Never edit an old migration.
+/// To change the schema later: bump [schemaVersion] and add an entry to
+/// [_migrations]. Never edit [schemaV1] or an old migration.
+///
+/// History:
+///   1 - content and player tables
+///   2 - sync_meta (last backup / restore times, pending backup flag)
 class AppDatabase {
   AppDatabase._(this.db);
 
   final Database db;
 
-  static const schemaVersion = 1;
+  static const schemaVersion = 2;
   static const fileName = 'midnight_manor.db';
 
   /// Opens (and creates or migrates) the database at the default location.
@@ -34,7 +38,7 @@ class AppDatabase {
       options: OpenDatabaseOptions(
         version: schemaVersion,
         onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
-        onCreate: (db, version) => _createAll(db),
+        onCreate: (db, version) => _createAll(db, version),
         onUpgrade: _upgrade,
       ),
     );
@@ -69,35 +73,51 @@ class AppDatabase {
     'hint_history',
   ];
 
-  static Future<void> _createAll(Database db) async {
-    final batch = db.batch();
-    for (final sql in _schemaV1) {
-      batch.execute(sql);
-    }
-    await batch.commit(noResult: true);
-  }
-
-  static Future<void> _upgrade(Database db, int oldVersion, int newVersion) async {
+  static Future<void> _createAll(Database db, int version) async {
     await db.transaction((txn) async {
-      for (var v = oldVersion + 1; v <= newVersion; v++) {
-        final steps = _migrations[v];
-        if (steps == null) {
-          throw StateError('No migration defined for schema version $v');
-        }
-        for (final sql in steps) {
-          await txn.execute(sql);
-        }
+      for (final sql in schemaV1) {
+        await txn.execute(sql);
       }
+      await _applyMigrations(txn, from: 1, to: version);
     });
   }
 
+  static Future<void> _upgrade(Database db, int oldVersion, int newVersion) =>
+      db.transaction(
+        (txn) => _applyMigrations(txn, from: oldVersion, to: newVersion),
+      );
+
+  static Future<void> _applyMigrations(
+    DatabaseExecutor txn, {
+    required int from,
+    required int to,
+  }) async {
+    for (var v = from + 1; v <= to; v++) {
+      final steps = _migrations[v];
+      if (steps == null) {
+        throw StateError('No migration defined for schema version $v');
+      }
+      for (final sql in steps) {
+        await txn.execute(sql);
+      }
+    }
+  }
+
   /// Migrations keyed by the version they upgrade TO.
-  /// Version 1 is created by [_createAll], so the map starts at 2.
+  /// Version 1 is [schemaV1], so the map starts at 2.
   static const Map<int, List<String>> _migrations = {
-    // 2: ['ALTER TABLE notes ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0'],
+    2: [
+      '''
+      CREATE TABLE sync_meta (
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )''',
+    ],
   };
 
-  static const List<String> _schemaV1 = [
+  /// The original schema. Kept frozen so upgrades from version 1 are
+  /// reproducible; tests also use it to build an old database.
+  static const List<String> schemaV1 = [
     // ----- content -----
     '''
     CREATE TABLE cases (
