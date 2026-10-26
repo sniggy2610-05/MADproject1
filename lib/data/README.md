@@ -12,6 +12,7 @@ Everything that touches storage.
   - `progress` - New / In Progress / Solved, hints used, score, `reset`
   - `hints` - hint history for the hint engine
   - `accusations` - `submit` runs the accusation checker, records the attempt and marks the case solved
+- `hint_service.dart` - `HintService`: builds a `HintState` from the repositories, runs the `HintEngine`, and records which hints were shown (`request`) or followed (`markFollowed`). `peek` computes without recording.
 - `sync/` - Firebase Auth and Firestore backup (SQLite stays the source of truth). Coming later.
 
 Rule breaches (pinning an uncollected clue, empty note, self link) throw `RuleViolation`, whose message is safe to show on screen.
