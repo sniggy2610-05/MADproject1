@@ -1,0 +1,251 @@
+{
+  "case": {
+    "id": "case_last_toast",
+    "title": "The Last Toast",
+    "synopsis": "Lord Edmund Hallowell collapses in his study minutes after the midnight toast at Blackwood Manor. Five guests, three rooms, one night to find the truth.",
+    "intro": "Rain hammers the windows of Blackwood Manor. At midnight the household raised their glasses to another year, and Lord Edmund Hallowell carried his private brandy up to the study as he always did. At five past twelve the housekeeper heard a crash. She found him on the study floor, the mantel clock knocked over beside him. Dr. Lin says his heart gave out. You are not so sure. The guests have been asked to stay until morning. Explore the rooms, collect what you find, and decide what really happened.",
+    "epilogue": "Isabelle Crane had been quietly moving money out of Hallowell & Crane for two years. When Edmund found the torn ledger page and wrote to his solicitor, she knew the audit would ruin her. During dinner she slipped into the conservatory, crushed foxglove leaves from the planter, and added them to the brandy decanter in the study. The champagne toast was harmless. The brandy was not. Edmund's weak heart made it look natural, and it almost worked.",
+    "difficulty": "medium",
+    "content_version": 1
+  },
+  "scenes": [
+    {
+      "id": "sc_study",
+      "name": "The Study",
+      "description": "Edmund's private retreat. A fire still burns low. The mantel clock lies on its side on the rug, and a crystal decanter sits on the desk beside a half-finished glass.",
+      "order_index": 1
+    },
+    {
+      "id": "sc_dining",
+      "name": "The Dining Room",
+      "description": "The long table is still set from dinner. Champagne flutes stand in a neat row on the butler's tray. A doctor's bag sits on a chair, and a sideboard holds the household logbook.",
+      "order_index": 2
+    },
+    {
+      "id": "sc_conservatory",
+      "name": "The Conservatory",
+      "description": "Glass walls, dripping ferns, and rows of potted plants. The storm sounds louder here. Someone has been among the foxgloves, and the tiled floor is streaked with mud.",
+      "order_index": 3
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev_decanter",
+      "scene_id": "sc_study",
+      "title": "Tampered brandy decanter",
+      "description": "Edmund's private decanter. Only he ever drank from it. A faint green sediment clings to the bottom, and the brandy smells bitter, not sweet.",
+      "kind": "object",
+      "is_key": true
+    },
+    {
+      "id": "ev_ledger_page",
+      "scene_id": "sc_study",
+      "title": "Torn ledger page",
+      "description": "A page ripped from the Hallowell & Crane accounts. Six transfers to an unnamed account over two years, each one initialled I.C. Someone tried to burn it; the corner is scorched.",
+      "kind": "document",
+      "is_key": true
+    },
+    {
+      "id": "ev_clock",
+      "scene_id": "sc_study",
+      "title": "Stopped mantel clock",
+      "description": "Knocked from the mantel when Edmund fell. The hands are frozen at 12:05, five minutes after the toast ended in the dining room.",
+      "kind": "object",
+      "is_key": true
+    },
+    {
+      "id": "ev_solicitor_letter",
+      "scene_id": "sc_study",
+      "title": "Letter to the solicitor",
+      "description": "An unsent letter in Edmund's hand, dated this afternoon. He asks his solicitor to dissolve the partnership with Isabelle Crane and to order a full audit of the company accounts 'before she can cover her tracks'.",
+      "kind": "document",
+      "is_key": true
+    },
+    {
+      "id": "ev_champagne_tray",
+      "scene_id": "sc_dining",
+      "title": "Champagne tray",
+      "description": "Six flutes, one bottle. Thomas poured every glass from the same bottle in front of everyone, and every guest drank. Nobody else is unwell.",
+      "kind": "object",
+      "is_key": false
+    },
+    {
+      "id": "ev_medical_bag",
+      "scene_id": "sc_dining",
+      "title": "Dr. Lin's medical bag",
+      "description": "Contains a bottle of digitalis tablets for Edmund's heart. The label says 40 tablets dispensed; 40 are still inside. The bag was in plain view all evening.",
+      "kind": "object",
+      "is_key": false
+    },
+    {
+      "id": "ev_iou_letter",
+      "scene_id": "sc_dining",
+      "title": "Julian's creditor letter",
+      "description": "Folded into Julian's napkin. A money-lender demands three hundred pounds by the end of the month 'or your uncle will hear of it'.",
+      "kind": "document",
+      "is_key": false
+    },
+    {
+      "id": "ev_logbook",
+      "scene_id": "sc_dining",
+      "title": "Housekeeper's logbook",
+      "description": "Margaret records every key that leaves her board. Tonight's last entry: '11:40 - study key to Miss Crane, returned 11:55.'",
+      "kind": "document",
+      "is_key": true
+    },
+    {
+      "id": "ev_foxglove",
+      "scene_id": "sc_conservatory",
+      "title": "Crushed foxglove",
+      "description": "A foxglove plant with several leaves freshly torn off. A small marble pestle lies in the soil beside it, smeared with green pulp. Foxglove is the plant digitalis comes from.",
+      "kind": "object",
+      "is_key": true
+    },
+    {
+      "id": "ev_gloves",
+      "scene_id": "sc_conservatory",
+      "title": "Stained lace gloves",
+      "description": "A pair of lady's lace gloves stuffed behind a planter. The fingertips are stained green and smell faintly bitter. Isabelle wore lace gloves at dinner; she is not wearing them now.",
+      "kind": "object",
+      "is_key": true
+    },
+    {
+      "id": "ev_footprints",
+      "scene_id": "sc_conservatory",
+      "title": "Muddy footprints",
+      "description": "Small, narrow prints lead from the conservatory door along the corridor toward the study. Three women were in the house tonight, and the prints could belong to any of them.",
+      "kind": "trace",
+      "is_key": false
+    },
+    {
+      "id": "ev_prescription_note",
+      "scene_id": "sc_conservatory",
+      "title": "Dr. Lin's warning note",
+      "description": "Found in Edmund's jacket, left on the conservatory bench. A note from Dr. Lin: 'No brandy, Edmund. Your heart will not forgive you.' It explains why nobody questioned a heart attack.",
+      "kind": "document",
+      "is_key": false
+    }
+  ],
+  "suspects": [
+    {
+      "id": "sus_margaret",
+      "name": "Margaret Finch",
+      "role": "Housekeeper",
+      "bio": "Thirty years in service at Blackwood Manor. Runs the house with a logbook and a sharp eye. Found the body.",
+      "statement": "I was clearing the dining room after the toast. I heard the crash at five past and ran up. Before that, I saw Miss Crane come out of the study, a little before midnight. She had a glass in her hand.",
+      "motive_hint": "Devoted to the family. No obvious reason to want Edmund dead."
+    },
+    {
+      "id": "sus_julian",
+      "name": "Julian Hallowell",
+      "role": "Nephew",
+      "bio": "Edmund's only nephew and heir. Charming, restless, and known in every card room in the county.",
+      "statement": "Yes, I asked Uncle for money again, and yes, he refused. I sat at the table sulking with the champagne until Margaret screamed. Ask anyone.",
+      "motive_hint": "Deep in debt and expecting an inheritance."
+    },
+    {
+      "id": "sus_vera",
+      "name": "Dr. Vera Lin",
+      "role": "Family physician",
+      "bio": "Has treated Edmund's heart for five years. Precise, calm, and careful with her medicines.",
+      "statement": "Edmund had a weak heart. I told him again and again: no brandy. I expect the toast and the brandy together did it. My bag has not left that chair all evening.",
+      "motive_hint": "Controls the only heart medicine in the house."
+    },
+    {
+      "id": "sus_thomas",
+      "name": "Thomas Reed",
+      "role": "Butler",
+      "bio": "Poured the drinks, as he has every midnight dinner for twelve years. Quiet, formal, and observant.",
+      "statement": "I poured every flute from the same bottle, in full view of the table. His Lordship took his private brandy up to the study afterward, as he always does. I never touched the decanter tonight.",
+      "motive_hint": "Poured every drink that night."
+    },
+    {
+      "id": "sus_isabelle",
+      "name": "Isabelle Crane",
+      "role": "Business partner",
+      "bio": "Co-owner of Hallowell & Crane for eight years. Elegant, composed, and very good with numbers.",
+      "statement": "After dinner I went straight to the conservatory for some air. The storm was giving me a headache. I never set foot in the study tonight.",
+      "motive_hint": "Admits the partnership was 'going through a difficult patch'."
+    }
+  ],
+  "accusation_options": {
+    "methods": [
+      { "id": "m_poisoned_brandy", "label": "Poison in the brandy decanter" },
+      { "id": "m_poisoned_champagne", "label": "Poison in the champagne toast" },
+      { "id": "m_overdose_tablets", "label": "Overdose of heart tablets" },
+      { "id": "m_natural_heart", "label": "A natural heart attack" },
+      { "id": "m_struck_clock", "label": "Struck with the mantel clock" }
+    ],
+    "motives": [
+      { "id": "mo_embezzlement", "label": "To hide stolen company money" },
+      { "id": "mo_inheritance", "label": "To inherit and clear gambling debts" },
+      { "id": "mo_negligence", "label": "To cover up a medical mistake" },
+      { "id": "mo_dismissal", "label": "Revenge for being dismissed" },
+      { "id": "mo_jealousy", "label": "Jealousy over a secret affair" }
+    ]
+  },
+  "solution": {
+    "culprit_id": "sus_isabelle",
+    "method_id": "m_poisoned_brandy",
+    "motive_id": "mo_embezzlement",
+    "required_links": ["link_decanter_foxglove", "link_ledger_letter", "link_logbook_clock"]
+  },
+  "clue_links": [
+    {
+      "id": "link_decanter_foxglove",
+      "evidence_a_id": "ev_decanter",
+      "evidence_b_id": "ev_foxglove",
+      "description": "The green sediment in the decanter is crushed foxglove from the conservatory.",
+      "stage": 2
+    },
+    {
+      "id": "link_ledger_letter",
+      "evidence_a_id": "ev_ledger_page",
+      "evidence_b_id": "ev_solicitor_letter",
+      "description": "Edmund had found the missing money and was about to order an audit of Isabelle's accounts.",
+      "stage": 2
+    },
+    {
+      "id": "link_logbook_clock",
+      "evidence_a_id": "ev_logbook",
+      "evidence_b_id": "ev_clock",
+      "description": "Isabelle held the study key from 11:40 to 11:55. Edmund died at 12:05, minutes after drinking from the decanter.",
+      "stage": 3
+    },
+    {
+      "id": "link_gloves_foxglove",
+      "evidence_a_id": "ev_gloves",
+      "evidence_b_id": "ev_foxglove",
+      "description": "The green stains on the lace gloves match the crushed foxglove pulp.",
+      "stage": 2
+    },
+    {
+      "id": "link_tray_decanter",
+      "evidence_a_id": "ev_champagne_tray",
+      "evidence_b_id": "ev_decanter",
+      "description": "Everyone drank the champagne and lived. Only Edmund drank the brandy. The poison was in the decanter, not the toast.",
+      "stage": 1
+    },
+    {
+      "id": "link_bag_note",
+      "evidence_a_id": "ev_medical_bag",
+      "evidence_b_id": "ev_prescription_note",
+      "description": "All forty tablets are accounted for. Dr. Lin's warning explains why a heart attack seemed believable, not that she caused one.",
+      "stage": 1
+    },
+    {
+      "id": "link_iou_letter",
+      "evidence_a_id": "ev_iou_letter",
+      "evidence_b_id": "ev_solicitor_letter",
+      "description": "The solicitor letter is about the partnership, not the will. Julian's debts gave him a motive, but nothing ties him to the brandy.",
+      "stage": 1
+    },
+    {
+      "id": "link_footprints_gloves",
+      "evidence_a_id": "ev_footprints",
+      "evidence_b_id": "ev_gloves",
+      "description": "The muddy prints lead from the planter where the gloves were hidden toward the study corridor.",
+      "stage": 3
+    }
+  ]
+}
