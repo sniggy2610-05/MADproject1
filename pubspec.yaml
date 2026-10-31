@@ -1,0 +1,38 @@
+name: midnight_manor
+description: "Midnight Manor - an offline detective mystery game for Android (MAD group project)."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Local storage (SQLite)
+  sqflite: ^2.4.5
+  path: ^1.9.1
+  path_provider: ^2.1.6
+
+  # State management and navigation
+  provider: ^6.1.5+1
+  go_router: ^18.1.1
+
+  # Settings
+  shared_preferences: ^2.5.3
+
+  # Optional cloud features (sign-in and backup only)
+  firebase_core: ^5.1.0
+  firebase_auth: ^7.0.1
+  cloud_firestore: ^7.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/cases/
